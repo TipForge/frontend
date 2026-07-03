@@ -1,98 +1,88 @@
-'use client';
+/**
+ * Home Page
+ * Landing page for TipForge
+ */
 
-import { motion } from 'framer-motion';
+import { Button } from '@/components/ui';
 
 export default function Home(): JSX.Element {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-      {/* Navigation */}
-      <nav className="border-b border-slate-200 bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-slate-900">TipForge</h1>
-            <div className="flex gap-4">
-              <a href="/login" className="text-sm text-slate-600 hover:text-slate-900">
-                Login
-              </a>
-              <a
-                href="/signup"
-                className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-blue-600"
-              >
-                Sign Up
-              </a>
-            </div>
+    <main className="flex min-h-screen flex-col">
+      {/* Header */}
+      <header className="border-b border-border bg-background sticky top-0 z-40">
+        <nav className="container-tight flex h-16 items-center justify-between">
+          <div className="text-xl font-bold text-primary">TipForge</div>
+          <div className="flex gap-4">
+            <Button variant="ghost">Sign In</Button>
+            <Button>Get Started</Button>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </header>
 
       {/* Hero Section */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center"
-        >
-          <h2 className="text-5xl font-bold text-slate-900 sm:text-6xl">
+      <section className="flex-1 flex items-center justify-center bg-gradient-to-b from-primary/5 to-background">
+        <div className="container-tight text-center space-y-6 py-20">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
             Support Creators Instantly
-          </h2>
-          <p className="mt-6 text-xl text-slate-600">
-            Send USDC tips to creators across platforms with zero friction, powered by Stellar
-            blockchain.
+          </h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Send tips to your favorite creators using USDC powered by Stellar. Fast, secure, and
+            transparent.
           </p>
-
-          <div className="mt-10 flex gap-4 justify-center">
-            <button className="rounded-lg bg-primary px-8 py-3 font-medium text-white hover:bg-blue-600 transition-colors">
-              Send a Tip
-            </button>
-            <button className="rounded-lg border border-slate-300 bg-white px-8 py-3 font-medium text-slate-900 hover:bg-slate-50 transition-colors">
-              Become a Creator
-            </button>
+          <div className="flex gap-4 justify-center pt-4">
+            <Button size="lg">Start Tipping</Button>
+            <Button variant="outline" size="lg">
+              Learn More
+            </Button>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* Features Section */}
-      <section className="border-t border-slate-200 bg-white py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h3 className="mb-12 text-center text-3xl font-bold text-slate-900">Why TipForge?</h3>
+      <section className="bg-background py-20">
+        <div className="container-tight space-y-12">
+          <div className="text-center space-y-4">
+            <h2>Why TipForge?</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Everything creators and supporters need for seamless, secure transactions.
+            </p>
+          </div>
 
-          <div className="grid gap-8 md:grid-cols-3">
-            {[
-              {
-                title: 'Instant Payments',
-                description: 'Send USDC tips in seconds with low fees and fast settlement',
-              },
-              {
-                title: 'Multi-Platform',
-                description:
-                  'Support creators across X, Instagram, TikTok, YouTube, GitHub, Twitch',
-              },
-              {
-                title: 'No Barriers',
-                description:
-                  'Global payments without geographic restrictions or complex onboarding',
-              },
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="rounded-lg border border-slate-200 bg-slate-50 p-8"
-              >
-                <h4 className="mb-3 text-lg font-semibold text-slate-900">{feature.title}</h4>
-                <p className="text-slate-600">{feature.description}</p>
-              </motion.div>
-            ))}
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="space-y-3">
+              <div className="text-3xl">⚡</div>
+              <h3 className="font-semibold">Instant Transfers</h3>
+              <p className="text-sm text-muted-foreground">
+                Settle payments in seconds with Stellar blockchain.
+              </p>
+            </div>
+            <div className="space-y-3">
+              <div className="text-3xl">🔒</div>
+              <h3 className="font-semibold">Secure & Verified</h3>
+              <p className="text-sm text-muted-foreground">
+                All transactions verified for creator authenticity.
+              </p>
+            </div>
+            <div className="space-y-3">
+              <div className="text-3xl">💰</div>
+              <h3 className="font-semibold">USDC Stablecoin</h3>
+              <p className="text-sm text-muted-foreground">
+                Stable, predictable value without volatility.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-slate-200 bg-slate-900 py-12 text-slate-300">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <p className="text-center">© 2024 TipForge. All rights reserved.</p>
+      <footer className="border-t border-border bg-muted/50 py-8 mt-auto">
+        <div className="container-tight flex justify-between items-center text-sm text-muted-foreground">
+          <p>&copy; 2024 TipForge. All rights reserved.</p>
+          <div className="flex gap-6">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Contact</a>
+          </div>
         </div>
       </footer>
     </main>
