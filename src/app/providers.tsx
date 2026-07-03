@@ -3,6 +3,7 @@
 import { ReactNode } from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from '@/components/theme-provider';
+import { NotificationProvider } from '@/components/notification-provider';
 import { getQueryClient } from '@/lib/query-client';
 
 export function Providers({ children }: { children: ReactNode }): JSX.Element {
@@ -10,7 +11,10 @@ export function Providers({ children }: { children: ReactNode }): JSX.Element {
 
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
+        <NotificationProvider />
+        {children}
+      </QueryClientProvider>
     </ThemeProvider>
   );
 }
