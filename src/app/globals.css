@@ -2,20 +2,271 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Color variables */
+@layer base {
+  :root {
+    /* Primary colors */
+    --primary: 59 130 246; /* blue-500 */
+    --primary-foreground: 255 255 255;
+
+    /* Secondary colors */
+    --secondary: 139 92 246; /* violet-500 */
+    --secondary-foreground: 255 255 255;
+
+    /* Accent colors */
+    --accent: 16 185 129; /* emerald-500 */
+    --accent-foreground: 255 255 255;
+
+    /* Neutral colors */
+    --background: 255 255 255;
+    --foreground: 15 23 42; /* slate-900 */
+
+    /* Neutral palette */
+    --muted: 148 163 184; /* slate-400 */
+    --muted-foreground: 51 65 85; /* slate-700 */
+
+    /* Borders */
+    --border: 226 232 240; /* slate-200 */
+    --input: 226 232 240;
+    --ring: 59 130 246;
+
+    /* Status colors */
+    --destructive: 239 68 68; /* red-500 */
+    --destructive-foreground: 255 255 255;
+
+    --success: 16 185 129; /* emerald-500 */
+    --warning: 245 158 11; /* amber-400 */
+    --info: 59 130 246; /* blue-500 */
+
+    /* Radius */
+    --radius: 0.5rem;
+  }
+
+  /* Dark mode */
+  .dark {
+    --primary: 59 130 246;
+    --primary-foreground: 15 23 42;
+
+    --secondary: 139 92 246;
+    --secondary-foreground: 15 23 42;
+
+    --accent: 16 185 129;
+    --accent-foreground: 15 23 42;
+
+    --background: 15 23 42; /* slate-900 */
+    --foreground: 248 250 252; /* slate-50 */
+
+    --muted: 100 116 139; /* slate-500 */
+    --muted-foreground: 203 213 225; /* slate-300 */
+
+    --border: 30 41 59; /* slate-800 */
+    --input: 30 41 59;
+    --ring: 59 130 246;
+
+    --destructive: 239 68 68;
+    --destructive-foreground: 248 250 252;
+
+    --success: 16 185 129;
+    --warning: 245 158 11;
+    --info: 59 130 246;
+
+    --radius: 0.5rem;
+  }
 }
 
-html {
-  scroll-behavior: smooth;
+/* Base styles */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: 'rounding' 1;
+  }
+
+  /* Typography */
+  h1 {
+    @apply text-3xl font-bold tracking-tight;
+  }
+
+  h2 {
+    @apply text-2xl font-semibold tracking-tight;
+  }
+
+  h3 {
+    @apply text-xl font-semibold;
+  }
+
+  h4 {
+    @apply text-lg font-semibold;
+  }
+
+  p {
+    @apply text-base leading-relaxed;
+  }
+
+  small {
+    @apply text-sm text-muted-foreground;
+  }
+
+  a {
+    @apply text-primary hover:underline;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Selection color */
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  /* Focus visible ring */
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
 }
 
-body {
-  font-family:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
-    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Component styles */
+@layer components {
+  /* Containers */
+  .container-tight {
+    @apply max-w-6xl mx-auto px-4;
+  }
+
+  .container-wide {
+    @apply max-w-7xl mx-auto px-4;
+  }
+
+  /* Flex utilities */
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .flex-between {
+    @apply flex items-center justify-between;
+  }
+
+  /* Grid utilities */
+  .grid-auto-fit {
+    @apply grid gap-4 auto-cols-max;
+  }
+
+  /* Text utilities */
+  .text-truncate {
+    @apply truncate;
+  }
+
+  .text-clip {
+    @apply line-clamp-3;
+  }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-sm font-medium;
+  }
+
+  .badge-primary {
+    @apply badge bg-primary/10 text-primary;
+  }
+
+  .badge-secondary {
+    @apply badge bg-secondary/10 text-secondary;
+  }
+
+  .badge-success {
+    @apply badge bg-success/10 text-success;
+  }
+
+  .badge-warning {
+    @apply badge bg-warning/10 text-warning;
+  }
+
+  .badge-destructive {
+    @apply badge bg-destructive/10 text-destructive;
+  }
+
+  /* Transitions */
+  .transition-smooth {
+    @apply transition-all duration-200 ease-out;
+  }
+
+  /* Skeleton loading */
+  .skeleton {
+    @apply animate-pulse rounded bg-muted;
+  }
+}
+
+/* Animations */
+@layer utilities {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-10px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .animate-slide-down {
+    animation: slideDown 0.3s ease-out;
+  }
+}
+
+/* Scrollbar styling */
+@supports (scrollbar-gutter: stable) {
+  html {
+    scrollbar-gutter: stable;
+  }
+}
+
+/* Scrollbar colors for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground;
 }
